@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SampleDragger</string>
+    <string name="foodzListError">Unable to retrieve Foodz list</string>
+    <string name="foodItemError">Unable to retrieve Food item</string>
+    <string name="foodItemContentDescription">Food Item Image View</string>
+    <string name="foodItemMeasure">Amount: %1s</string>
 </resources>
