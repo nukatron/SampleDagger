@@ -11,19 +11,30 @@ import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 
 
-interface FoodzViewModel {
-    val showProgress: Observable<Boolean>
-    val foodzResult: Observable<List<FoodzItem>>
+interface FoodzInout {
     fun getFoodz()
     fun cleanup()
 }
 
+interface FoodzOutput {
+    val showProgress: Observable<Boolean>
+    val foodzResult: Observable<List<FoodzItem>>
+}
+
+interface FoodzViewModel {
+    val input: FoodzInout
+    val output: FoodzOutput
+}
+
 
 //class FoodzViewModelImpl @Inject constructor(val api: UsdaApi) : FoodzViewModel {
-class FoodzViewModelImpl(val api: UsdaApi) : FoodzViewModel {
+class FoodzViewModelImpl(val api: UsdaApi) : FoodzViewModel, FoodzInout, FoodzOutput  {
+
 
     val disposeBag = CompositeDisposable()
 
+    override val input: FoodzInout = this
+    override val output: FoodzOutput = this
     override val showProgress: BehaviorRelay<Boolean> = BehaviorRelay.create()
     override val foodzResult: BehaviorRelay<List<FoodzItem>> = BehaviorRelay.create()
 

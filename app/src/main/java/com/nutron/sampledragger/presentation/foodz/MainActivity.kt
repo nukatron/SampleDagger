@@ -36,18 +36,18 @@ class MainActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         initOutput()
-        viewModel.getFoodz()
+        viewModel.input.getFoodz()
     }
 
     private fun initOutput() {
-        viewModel.foodzResult.subscribe({items ->
+        viewModel.output.foodzResult.subscribe({items ->
             showFoodz(items)
         }, {e ->
             Log.d("DEBUG", e.message)
             showErrorMessage()
         }).addTo(disposeBag)
 
-        viewModel.showProgress
+        viewModel.output.showProgress
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { isShown ->
             if(isShown) showLoading() else hideLoading()
