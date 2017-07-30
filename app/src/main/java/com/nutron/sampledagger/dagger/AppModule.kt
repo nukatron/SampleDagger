@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.dagger
+package com.nutron.sampledagger.dagger
 
 import android.app.Application
 import android.content.Context

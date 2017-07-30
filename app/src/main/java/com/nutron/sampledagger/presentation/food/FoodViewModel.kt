@@ -1,12 +1,12 @@
-package com.nutron.sampledragger.presentation.food
+package com.nutron.sampledagger.presentation.food
 
 import android.util.Log
 import com.jakewharton.rxrelay2.BehaviorRelay
-import com.nutron.sampledragger.base.RED_LEVEL
-import com.nutron.sampledragger.base.YELLOW_LEVEL
-import com.nutron.sampledragger.data.entity.Food
-import com.nutron.sampledragger.data.network.UsdaApi
-import com.nutron.sampledragger.extensions.addTo
+import com.nutron.sampledagger.base.RED_LEVEL
+import com.nutron.sampledagger.base.YELLOW_LEVEL
+import com.nutron.sampledagger.data.entity.Food
+import com.nutron.sampledagger.data.network.UsdaApi
+import com.nutron.sampledagger.extensions.addTo
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

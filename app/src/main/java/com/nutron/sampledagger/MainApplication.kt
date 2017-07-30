@@ -1,9 +1,9 @@
-package com.nutron.sampledragger
+package com.nutron.sampledagger
 
 import android.app.Application
-import com.nutron.sampledragger.dagger.AppComponent
-import com.nutron.sampledragger.dagger.AppModule
-import com.nutron.sampledragger.dagger.DaggerAppComponent
+import com.nutron.sampledagger.dagger.AppComponent
+import com.nutron.sampledagger.dagger.AppModule
+import com.nutron.sampledagger.dagger.DaggerAppComponent
 
 
 class MainApplication: Application() {

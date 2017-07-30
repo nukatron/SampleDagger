@@ -1,9 +1,9 @@
-package com.nutron.sampledragger.presentation.foodz
+package com.nutron.sampledagger.presentation.foodz
 
 import com.jakewharton.rxrelay2.BehaviorRelay
-import com.nutron.sampledragger.data.entity.FoodzItem
-import com.nutron.sampledragger.data.network.UsdaApi
-import com.nutron.sampledragger.extensions.addTo
+import com.nutron.sampledagger.data.entity.FoodzItem
+import com.nutron.sampledagger.data.network.UsdaApi
+import com.nutron.sampledagger.extensions.addTo
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -28,7 +28,7 @@ interface FoodzViewModel {
 
 
 //class FoodzViewModelImpl @Inject constructor(val api: UsdaApi) : FoodzViewModel {
-class FoodzViewModelImpl(val api: UsdaApi) : FoodzViewModel, FoodzInout, FoodzOutput  {
+class FoodzViewModelImpl(val api: UsdaApi) : FoodzViewModel, FoodzInout, FoodzOutput {
 
 
     val disposeBag = CompositeDisposable()

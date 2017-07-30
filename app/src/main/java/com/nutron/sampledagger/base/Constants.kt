@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.base
+package com.nutron.sampledagger.base
 
 const val NAME_BASE_URL = "NAME_BASE_URL"
 

@@ -1,7 +1,7 @@
-package com.nutron.sampledragger.dagger
+package com.nutron.sampledagger.dagger
 
-import com.nutron.sampledragger.presentation.food.FoodDetailActivity
-import com.nutron.sampledragger.presentation.foodz.MainActivity
+import com.nutron.sampledagger.presentation.food.FoodDetailActivity
+import com.nutron.sampledagger.presentation.foodz.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 

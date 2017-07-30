@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.presentation.foodz
+package com.nutron.sampledagger.presentation.foodz
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,11 +7,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.nutron.sampledragger.MainApplication
+import com.nutron.sampledagger.MainApplication
 import com.nutron.sampledragger.R
-import com.nutron.sampledragger.data.entity.FoodzItem
-import com.nutron.sampledragger.extensions.addTo
-import com.nutron.sampledragger.presentation.food.FoodDetailActivity
+import com.nutron.sampledagger.data.entity.FoodzItem
+import com.nutron.sampledagger.extensions.addTo
+import com.nutron.sampledagger.presentation.food.FoodDetailActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*

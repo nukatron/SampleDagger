@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.presentation.foodz
+package com.nutron.sampledagger.presentation.foodz
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.nutron.sampledragger.R
-import com.nutron.sampledragger.data.entity.FoodzItem
-import com.nutron.sampledragger.extensions.findView
-import com.nutron.sampledragger.extensions.stripPrefix
+import com.nutron.sampledagger.data.entity.FoodzItem
+import com.nutron.sampledagger.extensions.findView
+import com.nutron.sampledagger.extensions.stripPrefix
 
 
 interface FoodzItemClickedListener {

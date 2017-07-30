@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.data.entity
+package com.nutron.sampledagger.data.entity
 
 import com.google.gson.annotations.SerializedName
 

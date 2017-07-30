@@ -1,8 +1,8 @@
-package com.nutron.sampledragger.dagger
+package com.nutron.sampledagger.dagger
 
-import com.nutron.sampledragger.base.BASE_URL
-import com.nutron.sampledragger.base.NAME_BASE_URL
-import com.nutron.sampledragger.data.network.UsdaApi
+import com.nutron.sampledagger.base.BASE_URL
+import com.nutron.sampledagger.base.NAME_BASE_URL
+import com.nutron.sampledagger.data.network.UsdaApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Converter

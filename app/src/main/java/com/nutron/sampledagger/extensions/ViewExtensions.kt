@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.extensions
+package com.nutron.sampledagger.extensions
 
 import android.view.View
 

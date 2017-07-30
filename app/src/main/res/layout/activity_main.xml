@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nutron.sampledragger.presentation.foodz.MainActivity">
+    tools:context="com.nutron.sampledragger.com.nutron.sampledagger.presentation.foodz.MainActivity">
 
     <ProgressBar
         android:id="@+id/foodzProgressBar"

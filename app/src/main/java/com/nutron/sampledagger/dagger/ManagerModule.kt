@@ -1,6 +1,6 @@
-package com.nutron.sampledragger.dagger
+package com.nutron.sampledagger.dagger
 
-import com.nutron.sampledragger.domain.ResourceManager
+import com.nutron.sampledagger.domain.ResourceManager
 import dagger.Module
 import dagger.Provides
 

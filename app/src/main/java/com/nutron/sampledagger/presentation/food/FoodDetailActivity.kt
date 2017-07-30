@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.presentation.food
+package com.nutron.sampledagger.presentation.food
 
 import android.content.Context
 import android.content.Intent
@@ -9,13 +9,13 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import com.nutron.sampledragger.MainApplication
+import com.nutron.sampledagger.MainApplication
+import com.nutron.sampledagger.data.entity.Food
+import com.nutron.sampledagger.domain.FoodLevel
+import com.nutron.sampledagger.domain.ResourceManager
+import com.nutron.sampledagger.extensions.addTo
+import com.nutron.sampledagger.extensions.stripPrefix
 import com.nutron.sampledragger.R
-import com.nutron.sampledragger.data.entity.Food
-import com.nutron.sampledragger.domain.FoodLevel
-import com.nutron.sampledragger.domain.ResourceManager
-import com.nutron.sampledragger.extensions.addTo
-import com.nutron.sampledragger.extensions.stripPrefix
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_food.*

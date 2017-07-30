@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.extensions
+package com.nutron.sampledagger.extensions
 
 /**
  * Strips off a potential ", " from the front of a string

@@ -1,4 +1,4 @@
-package com.nutron.sampledragger.domain
+package com.nutron.sampledagger.domain
 
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
