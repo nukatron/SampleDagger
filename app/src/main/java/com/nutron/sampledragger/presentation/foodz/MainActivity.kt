@@ -2,6 +2,7 @@ package com.nutron.sampledragger.presentation.foodz
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
@@ -10,10 +11,13 @@ import com.nutron.sampledragger.MainApplication
 import com.nutron.sampledragger.R
 import com.nutron.sampledragger.data.entity.FoodzItem
 import com.nutron.sampledragger.extensions.addTo
+import com.nutron.sampledragger.presentation.food.FoodDetailActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -68,12 +72,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun launchFoodDetail(foodzItem: FoodzItem) {
-        Toast.makeText(this, "open detail for ${foodzItem.name}", Toast.LENGTH_SHORT).show()
+        startActivity(FoodDetailActivity.getStartIntent(this, foodzItem.id))
     }
 
     fun initView() {
+        val layoutManager = LinearLayoutManager(this)
+        val dividerItemDecoration = DividerItemDecoration(foodzRecyclerView.context, layoutManager.orientation)
         foodzAdapter.listener = { item -> launchFoodDetail(item) }
-        foodzRecyclerView.layoutManager = LinearLayoutManager(this)
+        foodzRecyclerView.addItemDecoration(dividerItemDecoration)
+        foodzRecyclerView.layoutManager = layoutManager
         foodzRecyclerView.adapter = foodzAdapter
+
     }
 }
