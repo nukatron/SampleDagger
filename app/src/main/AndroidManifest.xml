@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nutron.sampledragger">
+    package="com.nutron.sampledagger">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.nutron.sampledagger.MainApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,14 +14,15 @@
         android:theme="@style/AppTheme">
 
 
-        <activity android:name="com.nutron.sampledagger.presentation.foodz.MainActivity">
+        <activity android:name=".presentation.foodz.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nutron.sampledagger.presentation.food.FoodDetailActivity"/>
+        <activity android:name=".presentation.food.mvvm.FoodDetailActivity"/>
+        <activity android:name=".presentation.food.rxmvvm.RxFoodDetailActivity"/>
     </application>
 
 </manifest>

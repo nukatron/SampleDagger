@@ -8,10 +8,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.nutron.sampledagger.MainApplication
-import com.nutron.sampledragger.R
 import com.nutron.sampledagger.data.entity.FoodzItem
 import com.nutron.sampledagger.extensions.addTo
-import com.nutron.sampledagger.presentation.food.FoodDetailActivity
+import com.nutron.sampledagger.presentation.food.rxmvvm.RxFoodDetailActivity
+import com.nutron.sampledagger.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun launchFoodDetail(foodzItem: FoodzItem) {
-        startActivity(FoodDetailActivity.getStartIntent(this, foodzItem.id))
+        startActivity(RxFoodDetailActivity.getStartIntent(this, foodzItem.id))
     }
 
     fun initView() {

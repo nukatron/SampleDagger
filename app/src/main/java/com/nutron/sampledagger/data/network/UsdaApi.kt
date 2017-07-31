@@ -1,6 +1,6 @@
 package com.nutron.sampledagger.data.network
 
-import com.nutron.sampledragger.BuildConfig
+import com.nutron.sampledagger.BuildConfig
 import com.nutron.sampledagger.base.SUGAR_NUTRIENT
 import com.nutron.sampledagger.data.entity.FoodResponse
 import com.nutron.sampledagger.data.entity.FoodzListResponse

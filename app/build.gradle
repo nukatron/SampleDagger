@@ -11,7 +11,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.nutron.sampledragger"
+        applicationId "com.nutron.sampledagger"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

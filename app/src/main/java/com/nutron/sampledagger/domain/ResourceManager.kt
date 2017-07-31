@@ -2,7 +2,7 @@ package com.nutron.sampledagger.domain
 
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
-import com.nutron.sampledragger.R
+import com.nutron.sampledagger.R
 
 enum class FoodLevel {
     UNKNOWN, RED, GREEN, YELLOW

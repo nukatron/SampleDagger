@@ -1,4 +1,4 @@
-package com.nutron.sampledagger.presentation.food
+package com.nutron.sampledagger.presentation.food.mvvm
 
 import android.util.Log
 import com.jakewharton.rxrelay2.BehaviorRelay
@@ -15,12 +15,12 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
 
-interface FoodInput {
+interface FoodViewModelInput {
     fun getFood(foodId: String)
     fun cleanup()
 }
 
-interface FoodOutput {
+interface FoodViewModelOutput {
     val yellowReport: Observable<Food>
     val redReport: Observable<Food>
     val greenReport: Observable<Food>
@@ -30,14 +30,14 @@ interface FoodOutput {
 }
 
 interface FoodViewModel {
-    val input: FoodInput
-    val output: FoodOutput
+    val input: FoodViewModelInput
+    val output: FoodViewModelOutput
 }
 
-class FoodViewModelImpl(val api: UsdaApi): FoodViewModel, FoodInput, FoodOutput {
+class FoodViewModelImpl(val api: UsdaApi): FoodViewModel, FoodViewModelInput, FoodViewModelOutput {
 
-    override val input: FoodInput by RxReadOnlyProperty<FoodViewModelImpl, FoodInput>()
-    override val output: FoodOutput by RxReadOnlyProperty<FoodViewModelImpl, FoodOutput>()
+    override val input: FoodViewModelInput by RxReadOnlyProperty<FoodViewModelImpl, FoodViewModelInput>()
+    override val output: FoodViewModelOutput by RxReadOnlyProperty<FoodViewModelImpl, FoodViewModelOutput>()
     override val yellowReport: BehaviorRelay<Food> = BehaviorRelay.create()
     override val redReport: BehaviorRelay<Food> = BehaviorRelay.create()
     override val greenReport: BehaviorRelay<Food> = BehaviorRelay.create()
@@ -86,11 +86,12 @@ class FoodViewModelImpl(val api: UsdaApi): FoodViewModel, FoodInput, FoodOutput 
             }
         } ?: unknownReport.accept(food)
     }
-}
 
-private class RxReadOnlyProperty<in R, out T> : ReadOnlyProperty<R, T> {
-    @Suppress("UNCHECKED_CAST")
-    override fun getValue(thisRef: R, property: KProperty<*>): T {
-        return thisRef as T
+    private inner class RxReadOnlyProperty<in R, out T> : ReadOnlyProperty<R, T> {
+        @Suppress("UNCHECKED_CAST")
+        override fun getValue(thisRef: R, property: KProperty<*>): T {
+            return thisRef as T
+        }
     }
 }
+

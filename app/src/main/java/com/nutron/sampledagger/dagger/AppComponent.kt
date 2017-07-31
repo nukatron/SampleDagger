@@ -1,6 +1,7 @@
 package com.nutron.sampledagger.dagger
 
-import com.nutron.sampledagger.presentation.food.FoodDetailActivity
+import com.nutron.sampledagger.presentation.food.mvvm.FoodDetailActivity
+import com.nutron.sampledagger.presentation.food.rxmvvm.RxFoodDetailActivity
 import com.nutron.sampledagger.presentation.foodz.MainActivity
 import dagger.Component
 import javax.inject.Singleton
@@ -10,4 +11,5 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(activity: MainActivity)
     fun inject(activity: FoodDetailActivity)
+    fun inject(activity: RxFoodDetailActivity)
 }

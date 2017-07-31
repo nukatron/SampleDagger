@@ -1,4 +1,4 @@
-package com.nutron.sampledagger.presentation.food
+package com.nutron.sampledagger.presentation.food.rxmvvm
 
 import android.content.Context
 import android.content.Intent
@@ -10,21 +10,21 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.nutron.sampledagger.MainApplication
+import com.nutron.sampledagger.R
 import com.nutron.sampledagger.data.entity.Food
 import com.nutron.sampledagger.domain.FoodLevel
 import com.nutron.sampledagger.domain.ResourceManager
 import com.nutron.sampledagger.extensions.addTo
 import com.nutron.sampledagger.extensions.stripPrefix
-import com.nutron.sampledragger.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_food.*
 import javax.inject.Inject
 
 
-class FoodDetailActivity: AppCompatActivity() {
+class RxFoodDetailActivity : AppCompatActivity() {
 
-    @Inject lateinit var viewModel: FoodViewModel
+    @Inject lateinit var viewModel: RxFoodViewModel
     @Inject lateinit var resourceManager: ResourceManager
 
     private val disposaBag = CompositeDisposable()
@@ -32,7 +32,7 @@ class FoodDetailActivity: AppCompatActivity() {
     companion object {
         private const val EXTRA_FOOD_ID = "EXTRA_FOOD_ID"
         fun getStartIntent(context: Context, foodId: String): Intent {
-            val intent = Intent(context, FoodDetailActivity::class.java)
+            val intent = Intent(context, RxFoodDetailActivity::class.java)
             intent.putExtra(EXTRA_FOOD_ID, foodId)
             return intent
         }
@@ -51,8 +51,8 @@ class FoodDetailActivity: AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         initOutput()
-        val foodId = intent.getStringExtra(EXTRA_FOOD_ID)
-        viewModel.input.getFood(foodId)
+        initInput()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -63,14 +63,18 @@ class FoodDetailActivity: AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        viewModel.input.cleanup()
         disposaBag.clear()
     }
+
+    private fun initInput() {
+        val foodId = intent.getStringExtra(EXTRA_FOOD_ID)
+        viewModel.input.active.accept(foodId)
+    }
+
 
     private fun initOutput() {
         // observe green
@@ -105,13 +109,13 @@ class FoodDetailActivity: AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     if(it) showLoading() else hideLoading()
-                }
+                }.addTo(disposaBag)
 
         viewModel.output.error
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     showErrorMessage(it)
-                }
+                }.addTo(disposaBag)
     }
 
     fun showLoading() {
@@ -135,6 +139,6 @@ class FoodDetailActivity: AppCompatActivity() {
     fun showErrorMessage(t: Throwable) {
         val message = "${getString(R.string.foodItemError)}: ${t.message}"
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        Log.e("FoodDetailActivity", t.message)
+        Log.e("RxFoodDetailActivity", t.message)
     }
 }

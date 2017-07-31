@@ -5,17 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.nutron.sampledragger.R
+import com.nutron.sampledagger.R
 import com.nutron.sampledagger.data.entity.FoodzItem
 import com.nutron.sampledagger.extensions.findView
 import com.nutron.sampledagger.extensions.stripPrefix
 
 
-interface FoodzItemClickedListener {
-    fun onFoodzClicked(item: FoodzItem)
-}
-
-class FoodzAdapter() : RecyclerView.Adapter<FoodzViewHolder>() {
+class FoodzAdapter : RecyclerView.Adapter<FoodzViewHolder>() {
 
     var listener: ((FoodzItem) -> Unit)? = null
     var items: List<FoodzItem> = listOf()
