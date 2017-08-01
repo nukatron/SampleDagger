@@ -1,4 +1,4 @@
-package com.nutron.sampledagger.presentation.foodz
+package com.nutron.sampledagger.presentation.foodz.mvvm
 
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.nutron.sampledagger.data.entity.FoodzItem

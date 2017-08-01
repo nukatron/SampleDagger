@@ -52,7 +52,7 @@ class FoodViewModelImpl(val api: UsdaApi): FoodViewModel, FoodViewModelInput, Fo
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe { showProgress.accept(true) }
                 .doOnComplete { showProgress.accept(false) }
-                .map { it.foodList.foods[0] }
+                .map { it.foodList!!.foods[0] }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ food ->
                     handleOutput(food)

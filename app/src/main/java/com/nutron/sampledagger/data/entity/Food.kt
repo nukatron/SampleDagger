@@ -14,9 +14,9 @@ data class Food(
         val ndbno: String,
         val name: String,
         val measure: String,
-        val nutrients: List<FoodNutrient>? = null
+        val nutrients: List<FoodNutrient> = listOf()
 )
 
-data class FoodList(val foods: List<Food>)
+data class FoodList(val foods: List<Food> = listOf())
 
-data class FoodResponse(@SerializedName("report") val foodList: FoodList)
+data class FoodResponse(@SerializedName("report") val foodList: FoodList? = null)

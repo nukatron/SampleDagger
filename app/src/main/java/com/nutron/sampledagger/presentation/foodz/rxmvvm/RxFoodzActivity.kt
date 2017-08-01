@@ -1,4 +1,4 @@
-package com.nutron.sampledagger.presentation.foodz
+package com.nutron.sampledagger.presentation.foodz.rxmvvm
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,20 +8,20 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.nutron.sampledagger.MainApplication
+import com.nutron.sampledagger.R
 import com.nutron.sampledagger.data.entity.FoodzItem
 import com.nutron.sampledagger.extensions.addTo
 import com.nutron.sampledagger.presentation.food.rxmvvm.RxFoodDetailActivity
-import com.nutron.sampledagger.R
+import com.nutron.sampledagger.presentation.foodz.FoodzAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
+class RxFoodzActivity : AppCompatActivity() {
 
-class MainActivity : AppCompatActivity() {
-
-    @Inject lateinit var viewModel: FoodzViewModel
+    @Inject lateinit var viewModel: RxFoodzViewModel
 
     private val disposeBag = CompositeDisposable()
     private val foodzAdapter = FoodzAdapter()
@@ -35,23 +35,34 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        initOutput()
-        viewModel.input.getFoodz()
+        initViewModelOutput()
+        initViewModelInput()
     }
 
-    private fun initOutput() {
-        viewModel.output.foodzResult.subscribe({items ->
-            showFoodz(items)
-        }, {e ->
-            Log.d("DEBUG", e.message)
-            showErrorMessage()
-        }).addTo(disposeBag)
+    private fun initViewModelInput() {
+        viewModel.input.active.accept(Unit)
+    }
+
+    private fun initViewModelOutput() {
+        viewModel.output.foodzResult
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ items ->
+                    showFoodz(items)
+                }, { e ->
+                    showErrorMessage(e)
+                }).addTo(disposeBag)
 
         viewModel.output.showProgress
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { isShown ->
-            if(isShown) showLoading() else hideLoading()
-        }.addTo(disposeBag)
+                    if (isShown) showLoading() else hideLoading()
+                }.addTo(disposeBag)
+
+        viewModel.output.error
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    showErrorMessage(it)
+                }
     }
 
     fun showLoading() {
@@ -67,7 +78,8 @@ class MainActivity : AppCompatActivity() {
         foodzAdapter.notifyDataSetChanged()
     }
 
-    fun showErrorMessage() {
+    fun showErrorMessage(t: Throwable) {
+        Log.d("DEBUG", t.message)
         Toast.makeText(this, R.string.foodzListError, Toast.LENGTH_SHORT).show()
     }
 

@@ -48,34 +48,55 @@ class RxFoodViewModelImpl(val api: UsdaApi) : RxFoodViewModel, RxFoodViewModelIn
                 .flatMap { api.getFoodItem(it).materialize() }
                 .share()
 
+        // show progress dialog
         val startProgress = active.map { true }
         val endProgress = shareOutput.map { false }
         showProgress = Observable.merge(startProgress, endProgress)
 
+        // create observable for success response from server
+        val successResponse = shareOutput.elements()
+        // create observable for error response from server
+        val errorResponse = shareOutput.error()
 
-        val successOutput = shareOutput.elements()
-                .map { it.foodList.foods[0] }
-                .share()
+        // create complete content observable
+        val successContent = successResponse
+                .filter { it.foodList != null && it.foodList.foods.isNotEmpty() }
+                .map { it.foodList!!.foods[0] }
 
-        error = shareOutput.error()
+        // create uncompleted content observable
+        val errorContent = successResponse
+                .filter { it.foodList == null || it.foodList.foods.isEmpty() }
+                .flatMap { Observable.error<Throwable>(Throwable()) }
 
-        unknownReport = successOutput.filter {
-            val nutrient = it.nutrients!![0]
+        // create share observable for content that has nutrient
+        val nutrientContent = successContent.filter {
+            it.nutrients.isNotEmpty()
+        }.share()
+
+        // create output for unknown report
+        val unknownNutrient = nutrientContent.filter { it.nutrients.isEmpty() }
+        val invalidNutrient = successContent.filter {
+            val nutrient = it.nutrients[0]
             nutrient.value.toDouble() < 0
         }
 
-        greenReport = successOutput.filter {
-            val nutrient = it.nutrients!![0]
+        // create final output
+        error = Observable.merge(errorResponse, errorContent)
+
+        unknownReport = Observable.merge(unknownNutrient, invalidNutrient)
+
+        greenReport = nutrientContent.filter {
+            val nutrient = it.nutrients[0]
             nutrient.value.toDouble() < YELLOW_LEVEL
         }
 
-        yellowReport = successOutput.filter {
-            val nutrient = it.nutrients!![0]
+        yellowReport = nutrientContent.filter {
+            val nutrient = it.nutrients[0]
             nutrient.value.toDouble() < YELLOW_LEVEL
         }
 
-        redReport = successOutput.filter {
-            val nutrient = it.nutrients!![0]
+        redReport = nutrientContent.filter {
+            val nutrient = it.nutrients[0]
             nutrient.value.toDouble() > YELLOW_LEVEL
         }
     }
