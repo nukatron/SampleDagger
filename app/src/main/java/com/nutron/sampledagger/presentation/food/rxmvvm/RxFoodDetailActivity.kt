@@ -131,7 +131,7 @@ class RxFoodDetailActivity : AppCompatActivity() {
         title = foodNameString
         foodName.text = foodNameString
         foodMeasure.text = String.format(getString(R.string.foodItemMeasure), food.measure)
-        foodNutrient.text = food.nutrients?.get(0).toString()
+        foodNutrient.text = food.nutrients[0].toString()
         foodNutrient.setTextColor(ContextCompat.getColor(this, resourceManager.getFoodColor(level)))
         foodImageView.setImageDrawable(ContextCompat.getDrawable(this, resourceManager.getFoodImage(level)))
     }
