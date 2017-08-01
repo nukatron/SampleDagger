@@ -44,7 +44,7 @@ class RxFoodzViewModelImpl(api: UsdaApi) : RxFoodzViewModel, RxFoodzViewModelInp
 
         // init show progress observable
         val startProgress = active.map { true }
-        val stopProgress = shareOutput.map { true }
+        val stopProgress = shareOutput.map { false }
 
         // init final output
         error = shareOutput.error()

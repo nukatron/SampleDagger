@@ -27,7 +27,7 @@ interface FoodzViewModel {
 }
 
 
-//class FoodzViewModelImpl @Inject constructor(val api: UsdaApi) : FoodzViewModel {
+//class FoodzViewModelImpl @Inject constructor(val api: UsdaApi) : FoodzViewModel, FoodzViewModelInout, FoodzViewModelOutput  {
 class FoodzViewModelImpl(val api: UsdaApi) : FoodzViewModel, FoodzViewModelInout, FoodzViewModelOutput {
 
 
@@ -38,7 +38,8 @@ class FoodzViewModelImpl(val api: UsdaApi) : FoodzViewModel, FoodzViewModelInout
     override val showProgress: BehaviorRelay<Boolean> = BehaviorRelay.create()
     override val foodzResult: BehaviorRelay<List<FoodzItem>> = BehaviorRelay.create()
 
-    //if you do like this you need to define inject method in component
+    /** if you do like this you need to define inject method in component
+     * and declare the constructor like above comment */
 //    @Inject lateinit var api: UsdaApi
 //    init {
 //        MainApplication.appComponent.inject(this)

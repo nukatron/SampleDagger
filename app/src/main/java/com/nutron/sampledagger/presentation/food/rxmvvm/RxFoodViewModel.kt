@@ -66,7 +66,7 @@ class RxFoodViewModelImpl(val api: UsdaApi) : RxFoodViewModel, RxFoodViewModelIn
         // create uncompleted content observable
         val errorContent = successResponse
                 .filter { it.foodList == null || it.foodList.foods.isEmpty() }
-                .flatMap { Observable.error<Throwable>(Throwable()) }
+                .map { Throwable("uncompleted content") }
 
         // create share observable for content that has nutrient
         val nutrientContent = successContent.filter {
