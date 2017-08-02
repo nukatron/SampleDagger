@@ -5,6 +5,7 @@ import com.nutron.sampledagger.data.entity.FoodzItem
 import com.nutron.sampledagger.data.network.UsdaApi
 import com.nutron.sampledagger.extensions.elements
 import com.nutron.sampledagger.extensions.error
+import com.nutron.sampledagger.extensions.shareReplay
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import kotlin.properties.ReadOnlyProperty
@@ -40,7 +41,7 @@ class RxFoodzViewModelImpl(api: UsdaApi) : RxFoodzViewModel, RxFoodzViewModelInp
         val shareOutput = active
                 .observeOn(Schedulers.io())
                 .flatMap { api.getFoodzList().materialize() }
-                .share()
+                .shareReplay()
 
         // init show progress observable
         val startProgress = active.map { true }
@@ -52,6 +53,8 @@ class RxFoodzViewModelImpl(api: UsdaApi) : RxFoodzViewModel, RxFoodzViewModelInp
         foodzResult = shareOutput
                 .elements()
                 .map { it.list.items.filter { !it.name.contains("ERROR") } }
+
+
     }
 
     @Suppress("UNCHECKED_CAST")
