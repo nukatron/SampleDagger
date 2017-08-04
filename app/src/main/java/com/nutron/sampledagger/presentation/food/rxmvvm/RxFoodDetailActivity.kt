@@ -15,6 +15,7 @@ import com.nutron.sampledagger.data.entity.Food
 import com.nutron.sampledagger.domain.FoodLevel
 import com.nutron.sampledagger.domain.ResourceManager
 import com.nutron.sampledagger.extensions.addTo
+import com.nutron.sampledagger.extensions.component
 import com.nutron.sampledagger.extensions.stripPrefix
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -45,7 +46,7 @@ class RxFoodDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        MainApplication.appComponent.inject(this)
+        component.inject(this)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

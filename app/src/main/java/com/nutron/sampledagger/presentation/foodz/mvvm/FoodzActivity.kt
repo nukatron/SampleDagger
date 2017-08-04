@@ -11,6 +11,7 @@ import com.nutron.sampledagger.MainApplication
 import com.nutron.sampledagger.R
 import com.nutron.sampledagger.data.entity.FoodzItem
 import com.nutron.sampledagger.extensions.addTo
+import com.nutron.sampledagger.extensions.component
 import com.nutron.sampledagger.presentation.food.rxmvvm.RxFoodDetailActivity
 import com.nutron.sampledagger.presentation.foodz.FoodzAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -30,7 +31,7 @@ class FoodzActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MainApplication.appComponent.inject(this)
+        component.inject(this)
         initView()
     }
 
